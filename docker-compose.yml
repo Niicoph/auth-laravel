@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: niicoph
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: authLaravel
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - authLaravel_network
+    restart: always
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  authLaravel_network:
+    driver: bridge
